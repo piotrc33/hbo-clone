@@ -15,7 +15,7 @@ export default function CreateUser() {
           </div>
           
           <div className="create-user__input-group">
-            <label for="name-input" >Name</label>
+            <label htmlFor="name-input" >Name</label>
             <input id="name-input" type="text" className="create-user__input-text" />
 
             <div className="create-user__colors">
