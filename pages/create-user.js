@@ -1,8 +1,27 @@
 import {useStateContext} from "../components/HBOProvider";
+import ls from 'local-storage';
+import {v4} from 'uuid';
+import {useRouter} from 'next/router';
 
 export default function CreateUser() {
     const globalState = useStateContext();
     const {user, createUserAction, defaultUserImg} = globalState;
+    const router = useRouter();
+
+    const saveUser = () => {
+      let users = [], newUser;
+
+      ls('users') < 1 ? users = [] : users = ls('users');
+      newUser = {
+        id: v4(),
+        user: user,
+        myListID: []
+      }
+      users.push(newUser);
+      ls('users', users);
+      router.push('/home');
+    }
+
     return (
       <div className="create-user">
         <div className="create-user__top">
@@ -61,7 +80,8 @@ export default function CreateUser() {
   
         <div className="create-user__buttons">
           <div className="create-user__add-buttons">
-            <button className="create-user__save">Save</button>
+            <button className="create-user__save"
+              onClick={saveUser} >Save</button>
             <button className="create-user__cancel">Cancel</button>
           </div>
         </div>
