@@ -19,7 +19,7 @@ export default function CreateUser() {
       }
       users.push(newUser);
       ls('users', users);
-      router.push('/home');
+      router.push('/login');
     }
 
     return (
