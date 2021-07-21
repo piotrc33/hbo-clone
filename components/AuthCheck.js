@@ -1,4 +1,4 @@
-import{ useState, useEffect } from 'react';
+import{ useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ls from 'local-storage';
 import {useMounted} from './Hooks/useMounted'
@@ -10,8 +10,12 @@ function AuthCheck(component) {
     let users = ls('users') === null ? [] : ls('users');
 
     useEffect(() => {
+        if(activeUID === null && users.length >= 1){
+            router.push('/login');
+        }
+
         if(activeUID === null && users.length < 1){
-            router.push('/create-user')
+            router.push('/create-user');
         }
 
         if(users.length >= 1 && activeUID !== null){
