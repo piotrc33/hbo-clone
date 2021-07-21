@@ -5,7 +5,7 @@ import {useStateContext} from "../../HBOProvider";
 
 
 function Header() {
-    const {setSideNavOpened, setAccountModalOpened, accountModalOpened, sideNavOpened} = useStateContext();
+    const {setSideNavOpened, setAccountModalOpened, accountModalOpened, sideNavOpened, searchOpened, setSearchOpened} = useStateContext();
 
 
     return (
@@ -15,7 +15,9 @@ function Header() {
                     onClick={() => {setSideNavOpened(true); setAccountModalOpened(false)}}>
                     <i className="fas fa-bars" />
                 </div>
-                <div className="top-header__search-btn">
+                <div 
+                    className="top-header__search-btn"
+                    onClick={() => setSearchOpened(true)}>
                     <i className="fas fa-search" />
                 </div>
             </div>

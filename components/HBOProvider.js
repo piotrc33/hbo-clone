@@ -12,6 +12,7 @@ export default function HBOProvider({children}){
     const [user, setUser] = useState('');
     const [sideNavOpened, setSideNavOpened] = useState(false);
     const [accountModalOpened, setAccountModalOpened] = useState(false);
+    const [searchOpened, setSearchOpened] = useState(false);
 
     const createUserAction = (e) => {
         setUser(e.target.value);
@@ -25,7 +26,9 @@ export default function HBOProvider({children}){
             sideNavOpened,
             setSideNavOpened,
             accountModalOpened,
-            setAccountModalOpened
+            setAccountModalOpened,
+            searchOpened,
+            setSearchOpened
         }} >
             {children}
         </StateContext.Provider>
