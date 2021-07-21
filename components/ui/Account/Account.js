@@ -1,4 +1,8 @@
+import {useStateContext} from "../../HBOProvider";
+
 function Account() {
+    const {accountModalOpened} = useStateContext();
+    
     const loopComp = (comp, times) => {
         let thumbnails = [];
         for(let i = 0; i < times; i++){
@@ -7,7 +11,7 @@ function Account() {
         return thumbnails;
     }
     return (
-        <div className="account ">
+        <div className={`account ${accountModalOpened ? 'account--active' : ''}`}>
             <div className="account__details">
                 <div className="account__title">My list</div>
                 <div className="account__watch-list">

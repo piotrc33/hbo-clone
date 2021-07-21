@@ -7,8 +7,12 @@ export function useStateContext(){
 }
 
 export default function HBOProvider({children}){
-    const [user, setUser] = useState('');
     const defaultUserImg = 'https://images.pexels.com/photos/61100/pexels-photo-61100.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb';
+
+    const [user, setUser] = useState('');
+    const [sideNavOpened, setSideNavOpened] = useState(false);
+    const [accountModalOpened, setAccountModalOpened] = useState(false);
+
     const createUserAction = (e) => {
         setUser(e.target.value);
     }
@@ -17,7 +21,11 @@ export default function HBOProvider({children}){
         value={{
             user,
             createUserAction,
-            defaultUserImg
+            defaultUserImg,
+            sideNavOpened,
+            setSideNavOpened,
+            accountModalOpened,
+            setAccountModalOpened
         }} >
             {children}
         </StateContext.Provider>

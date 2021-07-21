@@ -12,6 +12,9 @@
     width: 100%;
     z-index: 10;
     transition: background .3s ease-in-out;
+    &--menu-opened{
+        background: $base-gray;
+    }
     &:hover{
         background: $base-gray;
     }

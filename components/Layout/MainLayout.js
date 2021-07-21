@@ -1,8 +1,10 @@
 import React from 'react';
 import Header from '../ui/Header/Header';
-import SideNav from '../ui/SideNav/SideNav';
+import {useStateContext} from "../HBOProvider";
 
 function MainLayout(props) {
+    const {setSideNavOpened, setAccountModalOpened} = useStateContext();
+
     return (
         <div style={{
             background: 'rgb(71,42,232)',
@@ -10,8 +12,11 @@ function MainLayout(props) {
             minHeight: '100vh'
         }}>
             <Header />
-            <SideNav />
-            <section className="content-container">
+            <section className="content-container"
+                onClick={() => {
+                    setAccountModalOpened(false);
+                    setSideNavOpened(false);
+                }}>
                 {props.children}
             </section>
         </div>

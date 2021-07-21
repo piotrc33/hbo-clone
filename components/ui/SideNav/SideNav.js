@@ -1,7 +1,12 @@
+import {useStateContext} from "../../HBOProvider";
+
 function SideNav() {
+    const {sideNavOpened, setSideNavOpened} = useStateContext();
+
     return (
-        <section className="side-nav ">
-            <i className="side-nav__close-btn fas fa-times" />
+        <section className={`side-nav ${sideNavOpened ? 'side-nav--active' : ''} `}>
+            <i className="side-nav__close-btn fas fa-times" 
+            onClick={() => setSideNavOpened(false)} />
             <ul className="side-nav__list">
                 <li>
                     <a href="/" className="active">Home</a>
