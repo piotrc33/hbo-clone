@@ -21,7 +21,7 @@ function Login() {
 
     const selectUser = (id) => {
         ls('activeUID', id);
-        router.push('/home');
+        router.push('/');
     }
     const showUsers = () => {
         if(!loadingUsers) {

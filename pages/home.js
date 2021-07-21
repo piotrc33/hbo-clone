@@ -7,10 +7,10 @@ import PosterView from '../components/ui/PosterView/PosterView';
 export default function Home() {
     return (
       <MainLayout>
-          <FeaturedMedia />
-          <ForYouList />
-          <JustAdded />
-          <PosterView />
+        <FeaturedMedia />
+        <ForYouList />
+        <JustAdded />
+        <PosterView />
       </MainLayout>
     )
   }

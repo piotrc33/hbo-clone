@@ -6,16 +6,16 @@ function FeaturedMedia() {
         
         <div className="featured-media">
             
-            {/* <iframe className="featured-media__trailer" 
+            <iframe className="featured-media__trailer" 
             width="100%" 
             height="100%" 
-            src="https://www.youtube.com/embed/HN4oydykJFc?controls=0&amp;start=5&autoplay=1" 
+            src="https://www.youtube.com/embed/HN4oydykJFc?controls=0&amp;start=5&autoplay=1&mute=1" 
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe> */}
+            allowfullscreen></iframe>
 
-            <YouTube 
+            {/* <YouTube 
                 videoId="HN4oydykJFc"
                 className="featured-media__trailer"
                 opts={{
@@ -27,7 +27,7 @@ function FeaturedMedia() {
                     loop: 1,
                     mute: 1
                 }}
-            />
+            /> */}
             
             
             <div className="featured-media__bg">

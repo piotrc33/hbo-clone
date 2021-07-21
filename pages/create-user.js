@@ -7,11 +7,11 @@ export default function CreateUser() {
     const globalState = useStateContext();
     const {user, createUserAction, defaultUserImg} = globalState;
     const router = useRouter();
-
     const saveUser = () => {
-      let users = [], newUser;
+      let newUser;
 
-      ls('users') < 1 ? users = [] : users = ls('users');
+      
+      let users = ls('users') === null ? [] : ls('users');
       newUser = {
         id: v4(),
         user: user,
