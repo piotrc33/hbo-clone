@@ -1,4 +1,6 @@
-function JustAdded() {
+
+
+function MediaRow({title, type}) {
     const loopComp = (comp, times) => {
         let thumbnails = [];
         for(let i = 0; i < times; i++){
@@ -7,13 +9,13 @@ function JustAdded() {
         return thumbnails;
     }
     return (
-        <div className="just-added">
-            <h3 className="just-added__title">Just Added</h3>
-            <div className="just-added__thumbnails">
+        <div className={`media-row ${type}`}>
+            <h3 className="media-row__title">{title}</h3>
+            <div className="media-row__thumbnails">
                 {loopComp(
-                    <div className="just-added__thumbnail">
+                    <div className="media-row__thumbnail">
                         <img src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500" alt="rickmorty" />
-                        <div className="just-added__top-layer">
+                        <div className="media-row__top-layer">
                             <i className="fas fa-play" />
                         </div>
                     </div>, 10
@@ -24,4 +26,4 @@ function JustAdded() {
     )
 }
 
-export default JustAdded
+export default MediaRow

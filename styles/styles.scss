@@ -4,13 +4,11 @@
 @use '../components/ui/Header/header';
 @use '../components/ui/SideNav/side-nav';
 @use '../components/ui/FeaturedMedia/featured-media';
-@use '../components/ui/ForYouList/for-you-list';
-@use '../components/ui/JustAdded/just-added';
-@use '../components/ui/PosterView/poster-view';
 @use '../components/ui/CastInfo/cast-info';
 @use '../components/ui/Account/account';
 @use '../components/ui/SearchModal/search-modal';
 @use '../components/ui/Login/login';
+@use '../components/ui/MediaRow/media-row';
 @use 'variables';
 
 
