@@ -1,7 +1,11 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import { useStateContext } from '../../HBOProvider';
+import axios from 'axios';
 
 function MediaRow({title, type}) {
     const [loadingData, setLoadingData] = useState(true);
+    const [movies, setMovies] = useState([]);
+    const {api_key} = useStateContext();
 
     const loopComp = (comp, times) => {
         let thumbnails = [];
@@ -11,9 +15,24 @@ function MediaRow({title, type}) {
         return thumbnails;
     }
 
+    useEffect(() => {
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&primary_release_year=2021&with_genres=27`)
+        .then(response => {
+            setLoadingData(false);
+            setMovies(response.data.results);
+            // console.log("Success ", response);
+        })
+        .catch(error => {
+            console.log("Error ", error);
+        })
+    }, [])
+
     const showThumbnails = () => {
-        setTimeout(() => setLoadingData(false), 3000);
-        return loopComp(loadingData ? <Skeleton/> : <Thumnail />, 10);
+        return loadingData ? 
+            loopComp(<Skeleton/>, 10) :
+            movies.map(movie => {
+                return <Thumbnail movieData={movie} />
+            })
     }
 
     return (
@@ -21,25 +40,15 @@ function MediaRow({title, type}) {
             <h3 className="media-row__title">{title}</h3>
             <div className="media-row__thumbnails">
                 {showThumbnails()}
-                {/* <Skeleton /> */}
-                {/* {loopComp(
-                    <div className="media-row__thumbnail">
-                        <img src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500" alt="rickmorty" />
-                        <div className="media-row__top-layer">
-                            <i className="fas fa-play" />
-                        </div>
-                    </div>, 10
-                   
-                )} */}
             </div>
         </div>
     )
 }
 
-function Thumnail() {
+function Thumbnail({movieData}) {
     return (
         <div className="media-row__thumbnail">
-            <img src="https://creativereview.imgix.net/content/uploads/2019/12/joker_full.jpg?auto=compress,format&q=60&w=1012&h=1500" alt="rickmorty" />
+            <img src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`} alt="rickmorty" />
             <div className="media-row__top-layer">
                 <i className="fas fa-play" />
             </div>
@@ -56,6 +65,5 @@ function Skeleton() {
         </div>
     )
 }
-
 
 export default MediaRow

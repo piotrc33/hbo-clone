@@ -14,6 +14,8 @@ export default function HBOProvider({children}){
     const [accountModalOpened, setAccountModalOpened] = useState(false);
     const [searchOpened, setSearchOpened] = useState(false);
 
+    const api_key = "bea23fa52dfceb92799aa605744eeb8e";
+
     const createUserAction = (e) => {
         setUser(e.target.value);
     }
@@ -28,7 +30,8 @@ export default function HBOProvider({children}){
             accountModalOpened,
             setAccountModalOpened,
             searchOpened,
-            setSearchOpened
+            setSearchOpened,
+            api_key
         }} >
             {children}
         </StateContext.Provider>
