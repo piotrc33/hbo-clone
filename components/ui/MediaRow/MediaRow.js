@@ -35,7 +35,6 @@ function MediaRow({ title, type, endpoint }) {
     return loadingData
       ? loopComp(<Skeleton />, 10)
       : movies.map((movie) => {
-          console.log(movie)
           return <Thumbnail key={movie.id} movieData={movie} />;
         });
   };
