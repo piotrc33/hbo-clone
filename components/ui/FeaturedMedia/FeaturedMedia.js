@@ -1,4 +1,4 @@
-import YouTube from "react-youtube";
+// import YouTube from "react-youtube";
 
 function FeaturedMedia() {
 
@@ -11,9 +11,9 @@ function FeaturedMedia() {
             height="100%" 
             src="https://www.youtube.com/embed/HN4oydykJFc?controls=0&amp;start=5&autoplay=1&mute=1" 
             title="YouTube video player" 
-            frameborder="0" 
+            frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
+            allowFullScreen></iframe>
 
             {/* <YouTube 
                 videoId="HN4oydykJFc"

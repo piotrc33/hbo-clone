@@ -48,22 +48,33 @@
         align-items: center;
         margin-bottom: 5rem;
     }
+    $play-btn-side: 50px;
     &__play-btn{
         background: white;
         color: black;
-        width: 50px;
-        height: 50px;
+        width: $play-btn-side;
+        height: $play-btn-side;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-right: 20px;
+        background-position: 0 0;
         transition: background .3s ease-in-out;
         &:hover{
-            background: linear-gradient(14deg, rgba(71,42,232,1) 2%, rgba(95,37,204,1) 36%, rgba(14,3,29,1) 77%);
+            background: transparent;
             color: white;
             cursor: pointer;
         }
+    }
+    &__play-btn::before{
+        content:'';
+        width: $play-btn-side;
+        height: $play-btn-side;
+        background: linear-gradient(14deg, rgba(71,42,232,1) 2%, rgba(95,37,204,1) 36%, rgba(14,3,29,1) 77%);
+        border-radius: 50%;
+        position: absolute;
+        z-index: -1;
     }
     &__info-btn{
         background:grey;
