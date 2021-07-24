@@ -31,11 +31,25 @@ function MediaRow({ title, type, endpoint }) {
       });
   }, []);
 
+  const thumbnailSize = () => {
+    switch(type){
+      case 'large-v': 
+        return '400';
+      case 'small-v': 
+        return '185';
+      case 'large-h': 
+        return '500';
+      case 'small-h': 
+        return '342';
+    }
+  }
+
+
   const showThumbnails = () => {
     return loadingData
       ? loopComp(<Skeleton />, 10)
       : movies.map((movie) => {
-          return <Thumbnail key={movie.id} movieData={movie} />;
+          return <Thumbnail thumbnailSize={thumbnailSize()} key={movie.id} movieData={movie} />;
         });
   };
 
@@ -47,11 +61,14 @@ function MediaRow({ title, type, endpoint }) {
   );
 }
 
-function Thumbnail({ movieData }) {
+function Thumbnail({ movieData, thumbnailSize }) {
+  
+  console.log(thumbnailSize)
+
   return (
     <div className="media-row__thumbnail">
       <img
-        src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w${thumbnailSize}/${movieData.poster_path}`}
         alt="rickmorty"
       />
       <div className="media-row__top-layer">
