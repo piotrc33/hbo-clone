@@ -5,27 +5,30 @@ import CastInfo from "../../components/ui/CastInfo/CastInfo";
 import AuthCheck from "../../components/AuthCheck";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
+import Placeholder from "../../components/ui/Placeholder/Placeholder";
 import axios from "axios";
 
 export default function MoviePage(props) {
   const router = useRouter();
   const api_key = "bea23fa52dfceb92799aa605744eeb8e";
   const [mediaData, setMediaData] = useState({});
+  const ulrMediaId = props.params.id;
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${props.params.id}?api_key=${api_key}&language=en-US&`
+        `https://api.themoviedb.org/3/movie/${ulrMediaId}?api_key=${api_key}&language=en-US&`
       )
       .then((response) => {
         setMediaData(response.data);
-        console.log(response);
+        //console.log(response);
         console.log("Success ", response);
       })
       .catch((error) => {
         console.log("Error ", error);
       });
-  }, []);
+  }, [ulrMediaId]);
 
   return AuthCheck(
     <MainLayout>
@@ -37,8 +40,17 @@ export default function MoviePage(props) {
         linkUrl="/movie/id"
         type="poster"
       />
-      {/* <MediaRow title="More Like This" type="small-v" /> */}
-      <CastInfo />
+      <LazyLoad
+        offset={-200}
+        placeholder={<Placeholder title="More Like This" type="small-v" />}
+      >
+        <MediaRow
+          title="More Like This"
+          type="small-v"
+          endpoint={`movie/${ulrMediaId}/similar?`}
+        />
+      </LazyLoad>
+      <CastInfo mediaId={ulrMediaId}/>
     </MainLayout>
   );
 }

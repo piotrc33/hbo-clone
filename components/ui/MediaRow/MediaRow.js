@@ -30,7 +30,7 @@ function MediaRow({ title, type, endpoint }) {
       .catch((error) => {
         console.log("Error ", error);
       });
-  }, []);
+  }, [endpoint]);
 
   const thumbnailSize = () => {
     switch (type) {
@@ -68,8 +68,6 @@ function MediaRow({ title, type, endpoint }) {
 }
 
 function Thumbnail({ movieData, thumbnailSize }) {
-  console.log(thumbnailSize);
-
   return (
     <Link href={`/movie/${movieData.id}`}>
       <a>
