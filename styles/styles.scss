@@ -11,4 +11,6 @@
 @use '../components/ui/MediaRow/media-row';
 @use 'variables';
 
-
+.hidden{
+    display: none;
+}

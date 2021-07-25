@@ -2,7 +2,7 @@ import Account from '../Account/Account';
 import SearchModal from '../SearchModal/SearchModal';
 import SideNav from '../SideNav/SideNav';
 import {useStateContext} from "../../HBOProvider";
-
+import Link from 'next/link';
 
 function Header() {
     const {setSideNavOpened, setAccountModalOpened, accountModalOpened, sideNavOpened, searchOpened, setSearchOpened} = useStateContext();
@@ -21,8 +21,9 @@ function Header() {
                     <i className="fas fa-search" />
                 </div>
             </div>
-
-            <div className="top-header__logo"></div>
+            <Link href="/">
+                <a><div className="top-header__logo"></div></a>
+            </Link>
 
             <div className="top-header__account"
                 onClick={() => {

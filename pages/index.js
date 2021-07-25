@@ -17,9 +17,11 @@ export default function Index() {
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia
-        videoUrl="https://www.youtube.com/embed/HN4oydykJFc"
-        title="Better Call Saul"
+        mediaUrl="https://www.youtube.com/embed/wZti8QKBWPo"
+        title="Nobody"
         location="In theaters and on HBO MAX"
+        linkUrl="/movie/615457"
+        type="video"
       />
       <LazyLoad
         offset={-200}
