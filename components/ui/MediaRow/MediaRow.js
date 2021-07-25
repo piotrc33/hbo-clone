@@ -4,7 +4,7 @@ import { shuffleArray } from "../../utilities";
 import axios from "axios";
 import Link from "next/link";
 
-function MediaRow({ title, type, endpoint }) {
+function MediaRow({ title, type, endpoint, mediaType }) {
   const [loadingData, setLoadingData] = useState(true);
   const [movies, setMovies] = useState([]);
   const { api_key } = useStateContext();
@@ -51,6 +51,7 @@ function MediaRow({ title, type, endpoint }) {
       : movies.map((movie) => {
           return (
             <Thumbnail
+              mediaType={mediaType}
               thumbnailSize={thumbnailSize()}
               key={movie.id}
               movieData={movie}
@@ -67,9 +68,11 @@ function MediaRow({ title, type, endpoint }) {
   );
 }
 
-function Thumbnail({ movieData, thumbnailSize }) {
+function Thumbnail({ movieData, thumbnailSize, mediaType }) {
+  let urlMediaType = mediaType === 'movie' ? 'movie' : 'tv';
+
   return (
-    <Link href={`/movie/${movieData.id}`}>
+    <Link href={`/${urlMediaType}/${movieData.id}`}>
       <a>
         <div className="media-row__thumbnail">
           <img
@@ -93,4 +96,7 @@ function Skeleton() {
   );
 }
 
+MediaRow.defaultProps = {
+  mediaType: 'movie'
+}
 export default MediaRow;

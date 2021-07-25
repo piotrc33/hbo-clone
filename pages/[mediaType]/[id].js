@@ -9,16 +9,18 @@ import LazyLoad from "react-lazyload";
 import Placeholder from "../../components/ui/Placeholder/Placeholder";
 import axios from "axios";
 
-export default function MoviePage({params}) {
+export default function MoviePage({ params, mediaType }) {
   const router = useRouter();
   const api_key = "bea23fa52dfceb92799aa605744eeb8e";
   const [mediaData, setMediaData] = useState({});
-  const ulrMediaId = params.id;
+  const urlMediaId = params.id;
+  // let mediaType = mediaType === 'movie' ? 'movie' : 'tv';
 
   useEffect(() => {
+    console.log(mediaType);
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${ulrMediaId}?api_key=${api_key}&language=en-US&`
+        `https://api.themoviedb.org/3/${mediaType}/${urlMediaId}?api_key=${api_key}&language=en-US&`
       )
       .then((response) => {
         setMediaData(response.data);
@@ -28,13 +30,13 @@ export default function MoviePage({params}) {
       .catch((error) => {
         console.log("Error ", error);
       });
-  }, [ulrMediaId]);
+  }, [urlMediaId]);
 
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia
         mediaUrl={`https://image.tmdb.org/t/p/w1280${mediaData.backdrop_path}`}
-        title={mediaData.title}
+        title={mediaType === "movie" ? mediaData.title : mediaData.name}
         location="In theaters and on HBO MAX"
         linkUrl="/movie/id"
         type="poster"
@@ -46,10 +48,10 @@ export default function MoviePage({params}) {
         <MediaRow
           title="More Like This"
           type="small-v"
-          endpoint={`movie/${ulrMediaId}/similar?`}
+          endpoint={`${mediaType}/${urlMediaId}/similar?`}
         />
       </LazyLoad>
-      <CastInfo mediaId={ulrMediaId}/>
+      <CastInfo mediaId={urlMediaId} mediaType={mediaType} />
     </MainLayout>
   );
 }
@@ -58,6 +60,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       params: context.query,
+      mediaType: context.query.mediaType,
     },
   };
 }

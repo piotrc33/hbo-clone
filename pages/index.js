@@ -28,6 +28,7 @@ export default function Index() {
         placeholder={<Placeholder title="Movies" type="large-h" />}
       >
         <MediaRow
+          mediaType='movie'
           title="Movies"
           type="large-h"
           endpoint="discover/movie?sort_by=popularity.desc"
@@ -35,9 +36,21 @@ export default function Index() {
       </LazyLoad>
       <LazyLoad
         offset={-200}
+        placeholder={<Placeholder title="Series" type="large-h" />}
+      >
+        <MediaRow
+          mediaType='series'
+          title="Series"
+          type="large-h"
+          endpoint="discover/tv?sort_by=popularity.desc"
+        />
+      </LazyLoad>
+      <LazyLoad
+        offset={-200}
         placeholder={<Placeholder title="Horror" type="small-v" />}
       >
         <MediaRow
+          mediaType='movie'
           title="Horror"
           type="small-v"
           endpoint="discover/movie?sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2021&with_genres=27"
@@ -48,6 +61,7 @@ export default function Index() {
         placeholder={<Placeholder title="Drama" type="large-v" />}
       >
         <MediaRow
+          mediaType='movie'
           title="Drama"
           type="large-v"
           endpoint="discover/movie?sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2021&with_genres=18"
@@ -58,6 +72,7 @@ export default function Index() {
         placeholder={<Placeholder title="Sci-fi" type="small-h" />}
       >
         <MediaRow
+          mediaType='movie'
           title="Sci-fi"
           type="small-h"
           endpoint="discover/movie?sort_by=popularity.desc&include_adult=false&page=1&primary_release_year=2021&with_genres=878"
