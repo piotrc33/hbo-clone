@@ -33,7 +33,6 @@ export default function MoviePage({params}) {
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia
-        title={mediaData.title}
         mediaUrl={`https://image.tmdb.org/t/p/w1280${mediaData.backdrop_path}`}
         title={mediaData.title}
         location="In theaters and on HBO MAX"
