@@ -9,11 +9,11 @@ import LazyLoad from "react-lazyload";
 import Placeholder from "../../components/ui/Placeholder/Placeholder";
 import axios from "axios";
 
-export default function MoviePage(props) {
+export default function MoviePage({params}) {
   const router = useRouter();
   const api_key = "bea23fa52dfceb92799aa605744eeb8e";
   const [mediaData, setMediaData] = useState({});
-  const ulrMediaId = props.params.id;
+  const ulrMediaId = params.id;
 
   useEffect(() => {
     axios

@@ -27,7 +27,7 @@ function CastInfo({ mediaId }) {
     }
     return credits.cast.map((person) => {
       return (
-        <ul className="cast-info__crew">
+        <ul key={person.id} className="cast-info__crew">
           <li>{person.character}</li>
           <li>{person.name}</li>
         </ul>
@@ -41,7 +41,7 @@ function CastInfo({ mediaId }) {
     }
     return credits.crew.map((person) => {
       return (
-        <ul className="cast-info__crew">
+        <ul key={person.id} className="cast-info__crew">
           <li>{person.job}</li>
           <li>{person.name}</li>
         </ul>
