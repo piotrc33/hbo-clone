@@ -9,14 +9,6 @@ function MediaRow({ title, type, endpoint, mediaType }) {
   const [movies, setMovies] = useState([]);
   const { api_key } = useStateContext();
 
-  const loopComp = (comp, times) => {
-    let thumbnails = [];
-    for (let i = 0; i < times; i++) {
-      thumbnails.push(comp);
-    }
-    return thumbnails;
-  };
-
   useEffect(() => {
     axios
       .get(
@@ -43,6 +35,13 @@ function MediaRow({ title, type, endpoint, mediaType }) {
       case "small-h":
         return "342";
     }
+  };
+  const loopComp = (comp, times) => {
+    let thumbnails = [<Skeleton key={'a'} />, <Skeleton key={'b'} />, <Skeleton key={'c'} />, <Skeleton key={'d'} />, <Skeleton key={'e'} />, <Skeleton key={'f'} />];
+    // for (let i = 0; i < times; i++) {
+    //   thumbnails.push(comp);
+    // }
+    return thumbnails;
   };
 
   const showThumbnails = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 
-function GenreNav() {
+function GenreNav({ mediaType, genresData }) {
   const [activeNav, setActiveNav] = useState(false);
   setTimeout(() => {
     setActiveNav(true);
@@ -10,28 +10,19 @@ function GenreNav() {
 
   return (
     <ul className={`genre-nav ${activeNav ? "genre-nav--active" : ""}`}>
-      <li>
-        <Link href="/">
-          <a >Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a >Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a >Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a >Home</a>
-        </Link>
-      </li>
+      <GenreList genresData={genresData} mediaType={mediaType} />
     </ul>
   );
 }
+
+const GenreList = ({ genresData }) => {
+  return genresData.map((item) => {
+    return(<li key={item.id}>
+      <Link href="/">
+        <a>{item.name}</a>
+      </Link>
+    </li>
+  )});
+};
 
 export default GenreNav;
