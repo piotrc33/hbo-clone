@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { v4 } from 'uuid'
 
 function CastInfo({ mediaId, mediaType }) {
   const api_key = "bea23fa52dfceb92799aa605744eeb8e";
@@ -27,7 +28,7 @@ function CastInfo({ mediaId, mediaType }) {
     }
     return credits.cast.map((person) => {
       return (
-        <ul key={person.id} className="cast-info__crew">
+        <ul key={v4()} className="cast-info__crew">
           <li>{person.character}</li>
           <li>{person.name}</li>
         </ul>
@@ -41,7 +42,7 @@ function CastInfo({ mediaId, mediaType }) {
     }
     return credits.crew.map((person) => {
       return (
-        <ul key={person.id} className="cast-info__crew">
+        <ul key={v4()} className="cast-info__crew">
           <li>{person.job}</li>
           <li>{person.name}</li>
         </ul>

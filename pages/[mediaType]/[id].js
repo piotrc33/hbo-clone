@@ -48,6 +48,7 @@ export default function MoviePage({ params, mediaType }) {
         <MediaRow
           title="More Like This"
           type="small-v"
+          mediaType={mediaType === 'movie' ? 'movie' : 'series'}
           endpoint={`${mediaType}/${urlMediaId}/similar?`}
         />
       </LazyLoad>

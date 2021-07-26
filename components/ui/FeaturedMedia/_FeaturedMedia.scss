@@ -5,6 +5,10 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
+    &--poster{
+        min-height: 500px;
+        height: 50vh;
+    }
     &__trailer, &__poster{
         position: absolute;
         z-index: 1;

@@ -30,7 +30,7 @@ function FeaturedMedia({ mediaUrl, title, location, type, linkUrl }) {
   };
 
   return (
-    <div className="featured-media">
+    <div className={`featured-media featured-media--${type}`}>
       {showMedia()}
 
       <div className="featured-media__bg">

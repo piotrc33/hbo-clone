@@ -12,18 +12,19 @@ import { shuffleArray } from "../../components/utilities";
 
 export default function MediaTypePage({ genresData, featuredData, query }) {
   const router = useRouter();
-  console.log(genresData)
-  console.log(featuredData)
+  function getTitle(){
+    return query.mediaType === 'movie' ? featuredData.title : featuredData.name;
+  }
 
   return AuthCheck(
     <MainLayout>
-      {/* <FeaturedMedia
-        mediaUrl="https://www.youtube.com/embed/wZti8QKBWPo"
-        title="Nobody"
+      <FeaturedMedia
+        mediaUrl={`https://image.tmdb.org/t/p/w1280${featuredData.backdrop_path}`}
+        title={getTitle()}
         location="In theaters and on HBO MAX"
-        linkUrl="/movie/615457"
-        type="video"
-      /> */}
+        linkUrl={`/${query.mediaType}/${featuredData.id}`}
+        type="poster"
+      />
       <GenreNav mediaType={query.mediaType} genresData={genresData} />
       <LazyLoad
         offset={-200}
