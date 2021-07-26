@@ -77,7 +77,7 @@ function Thumbnail({ movieData, thumbnailSize, mediaType }) {
         <div className="media-row__thumbnail">
           <img
             src={`https://image.tmdb.org/t/p/w${thumbnailSize}/${movieData.poster_path}`}
-            alt="rickmorty"
+            alt="movie_image"
           />
           <div className="media-row__top-layer">
             <i className="fas fa-play" />

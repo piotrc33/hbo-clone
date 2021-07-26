@@ -1,16 +1,21 @@
 @use 'reset'; // wydaje się to dobrą praktyką
 // super że tu są normalne komentarze a nie z jakimiś gwizdkami its xd
 @use 'create-user';
-@use '../components/ui/Header/header';
-@use '../components/ui/SideNav/side-nav';
-@use '../components/ui/FeaturedMedia/featured-media';
-@use '../components/ui/CastInfo/cast-info';
-@use '../components/ui/Account/account';
-@use '../components/ui/SearchModal/search-modal';
-@use '../components/ui/Login/login';
-@use '../components/ui/MediaRow/media-row';
+@use '../components/ui/Header/Header';
+@use '../components/ui/SideNav/SideNav';
+@use '../components/ui/FeaturedMedia/FeaturedMedia';
+@use '../components/ui/CastInfo/CastInfo';
+@use '../components/ui/Account/Account';
+@use '../components/ui/SearchModal/SearchModal';
+@use '../components/ui/Login/Login';
+@use '../components/ui/MediaRow/MediaRow';
+@use '../components/ui/GenreNav/GenreNav';
 @use 'variables';
 
 .hidden{
     display: none;
+}
+
+body{
+    background-color: black;
 }
