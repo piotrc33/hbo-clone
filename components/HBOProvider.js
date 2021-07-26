@@ -14,6 +14,8 @@ export default function HBOProvider({children}){
     const [accountModalOpened, setAccountModalOpened] = useState(false);
     const [searchOpened, setSearchOpened] = useState(false);
 
+    const thumbnailSizes = ['large-v', 'small-v', 'large-h', 'small-h']
+
     const api_key = "bea23fa52dfceb92799aa605744eeb8e";
 
     const createUserAction = (e) => {
@@ -31,7 +33,8 @@ export default function HBOProvider({children}){
             setAccountModalOpened,
             searchOpened,
             setSearchOpened,
-            api_key
+            api_key,
+            thumbnailSizes
         }} >
             {children}
         </StateContext.Provider>

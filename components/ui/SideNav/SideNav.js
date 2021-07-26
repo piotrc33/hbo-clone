@@ -17,10 +17,14 @@ function SideNav() {
           </Link>
         </li>
         <li>
-          <a href="/">Series</a>
+          <Link href="/tv">
+            <a>Series</a>
+          </Link>
         </li>
         <li>
-          <a href="/">Movies</a>
+          <Link href="/movie">
+            <a>Movies</a>
+          </Link>
         </li>
         <li>
           <a href="/">Originals</a>

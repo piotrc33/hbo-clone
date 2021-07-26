@@ -17,7 +17,6 @@ export default function MoviePage({ params, mediaType }) {
   // let mediaType = mediaType === 'movie' ? 'movie' : 'tv';
 
   useEffect(() => {
-    console.log(mediaType);
     axios
       .get(
         `https://api.themoviedb.org/3/${mediaType}/${urlMediaId}?api_key=${api_key}&language=en-US&`
