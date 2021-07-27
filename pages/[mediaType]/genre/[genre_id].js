@@ -1,25 +1,25 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
-import MainLayout from "../../components/Layout/MainLayout";
-import FeaturedMedia from "../../components/ui/FeaturedMedia/FeaturedMedia";
-import MediaRow from "../../components/ui/MediaRow/MediaRow";
-import AuthCheck from "../../components/AuthCheck";
+import MainLayout from "../../../components/Layout/MainLayout";
+import FeaturedMedia from "../../../components/ui/FeaturedMedia/FeaturedMedia";
+import MediaRow from "../../../components/ui/MediaRow/MediaRow";
+import AuthCheck from "../../../components/AuthCheck";
 import LazyLoad from "react-lazyload";
-import Placeholder from "../../components/ui/Placeholder/Placeholder";
-import GenreNav from "../../components/ui/GenreNav/GenreNav";
+import Placeholder from "../../../components/ui/Placeholder/Placeholder";
+import GenreNav from "../../../components/ui/GenreNav/GenreNav";
 import axios from "axios";
-import { shuffleArray } from "../../components/utilities";
-import { useStateContext } from "../../components/HBOProvider";
+import { shuffleArray } from "../../../components/utilities";
+import { useStateContext } from "../../../components/HBOProvider";
 
 export default function MediaTypePage({ genresData, featuredData, query }) {
   const { thumbnailSizes } = useStateContext();
+  const router = useRouter();
   function getTitle() {
     return query.mediaType === "movie" ? featuredData.title : featuredData.name;
   }
 
   const showRandomMedia = () => {
     let thumbnailSize;
-    return genresData.map((item) => {
+    return genresData.map((item, index) => {
       thumbnailSize = shuffleArray(thumbnailSizes)[0];
       return (
         <LazyLoad
@@ -29,9 +29,9 @@ export default function MediaTypePage({ genresData, featuredData, query }) {
         >
           <MediaRow
             title={item.name}
-            type={thumbnailSize}
             mediaType={query.mediaType}
-            endpoint={`discover/${query.mediaType}?with_genres=${item.id}&sort_by=popularity.desc&primary_release_year=2021`}
+            type={thumbnailSize}
+            endpoint={`discover/${query.mediaType}?with_genres=${query.genre_id}&sort_by=popularity.desc&primary_release_year=2021&page=${index + 1}`}
           />
         </LazyLoad>
       );
@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
       `https://api.themoviedb.org/3/genre/${context.query.mediaType}/list?api_key=${api_key}&language=en-US`
     );
     featuredData = await axios.get(
-      `https://api.themoviedb.org/3/discover/${context.query.mediaType}?api_key=${api_key}&language=en-US&primary_release_year=2021`
+      `https://api.themoviedb.org/3/discover/${context.query.mediaType}?api_key=${api_key}&language=en-US&primary_release_year=2021&with_genres=${context.query.genre_id}`
     );
   } catch (error) {
     console.log("error", error);

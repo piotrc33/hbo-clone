@@ -15,10 +15,10 @@ function GenreNav({ mediaType, genresData }) {
   );
 }
 
-const GenreList = ({ genresData }) => {
+const GenreList = ({ genresData, mediaType }) => {
   return genresData.map((item) => {
     return(<li key={item.id}>
-      <Link href="/">
+      <Link href={`/${mediaType}/genre/${item.id}`}>
         <a>{item.name}</a>
       </Link>
     </li>
