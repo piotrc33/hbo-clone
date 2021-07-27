@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import { useStateContext } from "../../HBOProvider";
+
 
 function Account() {
   const { accountModalOpened } = useStateContext();
+
+  useEffect(() => {
+    if(accountModalOpened){
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [accountModalOpened])
 
   return (
     <div className={`account ${accountModalOpened ? "account--active" : ""}`}>

@@ -1,8 +1,17 @@
 import { useStateContext } from "../../HBOProvider";
 import Link from "next/link";
+import { useEffect } from "react";
 
 function SideNav() {
   const { sideNavOpened, setSideNavOpened } = useStateContext();
+
+  useEffect(() => {
+    if(sideNavOpened){
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [sideNavOpened])
 
   return (
     <section className={`side-nav ${sideNavOpened ? "side-nav--active" : ""} `}>

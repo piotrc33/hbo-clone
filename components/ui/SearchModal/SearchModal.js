@@ -1,7 +1,16 @@
 import { useStateContext } from "../../HBOProvider";
+import { useEffect } from "react";
 
 function SearchModal() {
   const { searchOpened, setSearchOpened } = useStateContext();
+
+  useEffect(() => {
+    if (searchOpened) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [searchOpened]);
 
   const loopComp = (comp, times) => {
     let thumbnails = [];
