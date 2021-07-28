@@ -1,40 +1,64 @@
 import { useEffect } from "react";
 import { useStateContext } from "../../HBOProvider";
-
+import { useRouter } from "next/router";
+import ls from 'local-storage';
 
 function Account() {
-  const { accountModalOpened } = useStateContext();
+  const { accountModalOpened, watchList, removeFromList, closeModals } = useStateContext();
+  const router = useRouter();
 
   useEffect(() => {
-    if(accountModalOpened){
-      document.body.style.overflowY = 'hidden';
+    if (accountModalOpened) {
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflowY = 'auto';
+      document.body.style.overflowY = "auto";
     }
-  }, [accountModalOpened])
+  }, [accountModalOpened]);
 
-  return (
-    <div className={`account ${accountModalOpened ? "account--active" : ""}`}>
-      <div className="account__details">
-        <div className="account__title">My list</div>
-        <div className="account__watch-list">
-          <div className="account__watch-video">
-            <img
-              src="https://static.posters.cz/image/1300/plakaty/rick-morty-portal-i86752.jpg"
-              alt="video"
-            />
+  const handlePlay = (mediaType, mediaId) => {
+    router.push(`/${mediaType}/${mediaId}`);
+    closeModals();
+  };
+
+  const signOut = () => {
+    ls.remove("activeUID")
+  }
+
+  const showWatchList = () => {
+    if (watchList === null) {
+      console.log("watchlist is null");
+    } else {
+      return watchList.map((item, index) => {
+        return (
+          <div className="account__watch-video" key={index}>
+            <img src={item.mediaUrl} alt="media_image" />
             <div className="account__watch-overlay">
               <div className="account__watch-buttons">
-                <div className="account__watch-circle">
+                <div
+                  className="account__watch-circle"
+                  onClick={() => handlePlay(item.mediaType, item.mediaId)}
+                >
                   <i className="fas fa-play" />
                 </div>
-                <div className="account__watch-circle">
+                <div
+                  className="account__watch-circle"
+                  onClick={() => removeFromList(item.mediaId)}
+                >
                   <i className="fas fa-times" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        );
+      });
+    }
+  };
+
+  return (
+    <div className={`account ${accountModalOpened ? "account--active" : ""}`}>
+      <div className="account__details">
+        <div className="account__title">My list</div>
+        <div className="account__watch-list">{showWatchList()}</div>
       </div>
       <div className="account__menu">
         <ul className="account__main">
@@ -50,7 +74,7 @@ function Account() {
             <a href="/">Account</a>
           </li>
           <li>
-            <a href="/">Sign Out</a>
+            <a href="/" onClick={signOut}>Sign Out</a>
           </li>
         </ul>
       </div>

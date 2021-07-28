@@ -46,6 +46,8 @@ export default function MediaTypePage({ genresData, featuredData, query }) {
         location="In theaters and on HBO MAX"
         linkUrl={`/${query.mediaType}/${featuredData.id}`}
         type="poster"
+        mediaType={query.mediaType}
+        mediaId={query.id}
       />
       <GenreNav mediaType={query.mediaType} genresData={genresData} />
 

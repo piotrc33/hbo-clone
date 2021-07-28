@@ -1,12 +1,27 @@
 // import YouTube from "react-youtube";
 import { useRouter } from "next/router";
+import { useStateContext } from "../../HBOProvider";
 
-function FeaturedMedia({ mediaUrl, title, location, type, linkUrl }) {
+function FeaturedMedia({
+  mediaUrl,
+  title,
+  location,
+  type,
+  linkUrl,
+  mediaId,
+  mediaType,
+}) {
   const router = useRouter();
+  const { addToList } = useStateContext();
 
   const handlePlay = () => {
-    router.push(linkUrl)
+    router.push(linkUrl);
     console.log("send user to movie page");
+  };
+
+  const handleAdd = () => {
+    addToList({ mediaId: mediaId, mediaType: mediaType, mediaUrl: mediaUrl });
+    console.log("Added to list");
   };
 
   const showMedia = () => {
@@ -53,6 +68,9 @@ function FeaturedMedia({ mediaUrl, title, location, type, linkUrl }) {
           <div className="featured-media__buttons">
             <div className="featured-media__play-btn" onClick={handlePlay}>
               <i className="fas fa-play" />
+            </div>
+            <div className={`featured-media__add-btn ${type === "video" ? 'hidden' : ''}`} onClick={handleAdd}>
+              <i className="fas fa-plus" />
             </div>
             <div
               className={`featured-media__info-btn ${

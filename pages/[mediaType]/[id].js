@@ -14,7 +14,6 @@ export default function MoviePage({ params, mediaType }) {
   const api_key = "bea23fa52dfceb92799aa605744eeb8e";
   const [mediaData, setMediaData] = useState({});
   const urlMediaId = params.id;
-  // let mediaType = mediaType === 'movie' ? 'movie' : 'tv';
 
   useEffect(() => {
     axios
@@ -39,6 +38,8 @@ export default function MoviePage({ params, mediaType }) {
         location="In theaters and on HBO MAX"
         linkUrl="/movie/id"
         type="poster"
+        mediaType={mediaType}
+        mediaId={urlMediaId}
       />
       <LazyLoad
         offset={-200}
