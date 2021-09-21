@@ -20,7 +20,6 @@ function SearchModal() {
         popularSearches.data.results.filter((item, i) => i < 14)
       );
       setResultsShowed(true);
-      console.log(popularSearches.data.results);
     } catch (error) {}
   }, []);
 
