@@ -31,7 +31,7 @@ function FeaturedMedia({
           className="featured-media__trailer"
           width="100%"
           height="100%"
-          src={`${mediaUrl}?controls=0&amp;start=5&autoplay=0&mute=1`}
+          src={`${mediaUrl}?controls=0&amp;start=5&autoplay=1&mute=1`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -69,7 +69,7 @@ function FeaturedMedia({
             <div className="featured-media__play-btn" onClick={handlePlay}>
               <i className="fas fa-play" />
             </div>
-            <div className={`featured-media__add-btn ${type === "video" ? 'hidden' : ''}`} onClick={handleAdd}>
+            <div title="Add to watchlist" className={`featured-media__add-btn ${type === "video" ? 'hidden' : ''}`} onClick={handleAdd}>
               <i className="fas fa-plus" />
             </div>
             <div

@@ -17,7 +17,7 @@ function MediaRow({ title, type, endpoint, mediaType }) {
       .then((response) => {
         setLoadingData(false);
         setMovies(shuffleArray(response.data.results));
-        // console.log("Success ", response);
+        console.log("Success ", response);
       })
       .catch((error) => {
         console.log("Error ", error);
@@ -37,10 +37,14 @@ function MediaRow({ title, type, endpoint, mediaType }) {
     }
   };
   const loopComp = (comp, times) => {
-    let thumbnails = [<Skeleton key={'a'} />, <Skeleton key={'b'} />, <Skeleton key={'c'} />, <Skeleton key={'d'} />, <Skeleton key={'e'} />, <Skeleton key={'f'} />];
-    // for (let i = 0; i < times; i++) {
-    //   thumbnails.push(comp);
-    // }
+    let thumbnails = [
+      <Skeleton key={"a"} />,
+      <Skeleton key={"b"} />,
+      <Skeleton key={"c"} />,
+      <Skeleton key={"d"} />,
+      <Skeleton key={"e"} />,
+      <Skeleton key={"f"} />,
+    ];
     return thumbnails;
   };
 
@@ -68,7 +72,7 @@ function MediaRow({ title, type, endpoint, mediaType }) {
 }
 
 function Thumbnail({ movieData, thumbnailSize, mediaType }) {
-  let urlMediaType = mediaType === 'movie' ? 'movie' : 'tv';
+  let urlMediaType = mediaType === "movie" ? "movie" : "tv";
 
   return (
     <Link href={`/${urlMediaType}/${movieData.id}`}>
@@ -79,6 +83,7 @@ function Thumbnail({ movieData, thumbnailSize, mediaType }) {
             alt="movie_image"
           />
           <div className="media-row__top-layer">
+            <div className="media-row__top-layer--title">{mediaType === "movie" ? movieData.title : movieData.name}</div>
             <i className="fas fa-play" />
           </div>
         </div>
@@ -96,6 +101,6 @@ function Skeleton() {
 }
 
 MediaRow.defaultProps = {
-  mediaType: 'movie'
-}
+  mediaType: "movie",
+};
 export default MediaRow;
