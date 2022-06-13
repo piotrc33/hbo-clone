@@ -1,3 +1,20 @@
+## HBO MAX clone
+
+Deployed on: https://festive-ritchie-52d70c.netlify.app/
+
+Functionalities:
+- Searching for a movie
+- Checking actors in a movie
+- Adding movie to watchlist
+- Filtering movies for specific genre
+- Registering
+
+Application is built with React js and Next.js
+It is using external movie API, created with reusable components and using lazy loading
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
