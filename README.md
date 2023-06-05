@@ -1,6 +1,6 @@
 ## HBO MAX clone
 
-Deployed on: <a href="https://festive-ritchie-52d70c.netlify.app/" target="_blank">Netlify</a>
+Deployed on: <a href="https://festive-ritchie-52d70c.netlify.app/" target="_blank">Netlify</a> [Netlify](https://festive-ritchie-52d70c.netlify.app/){:target="_blank"}
 
 Functionalities:
 - Searching for a movie
